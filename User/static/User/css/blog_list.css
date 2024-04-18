@@ -1,0 +1,93 @@
+body {
+    background-image: url("../images/bgblog.jpg");
+    background-size: cover;
+    background-position-y: top;
+    align-self: center;
+    align-content: center;
+    align-items: center;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+  .outer {
+    display: 100vh;
+    overflow-y: scroll;
+    flex-direction: column;
+    height:100vh;
+    margin-left: 3%;
+  }
+  
+  .card {
+    margin-bottom: 1%;
+    box-shadow: 10px 5px 10px black;
+  }
+  
+  .inner {
+    width: 50%;
+    padding: 0;
+  }
+  
+  .post {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 1px solid black;
+  }
+  
+  img {
+    display: flex;
+    width: 80% !important;
+    height: auto !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .inactive {
+    display: none;
+    opacity: 0;
+  }
+
+  .form2 {
+    background-color: blue;
+  }
+
+  /*--- RESPONSIVE ---*/
+
+@media screen and (max-width: 990px) {
+  .inner{
+    margin:auto;
+    width: 100%;
+  }
+    .container{
+       width: 100%;
+    }
+}
+
+@media screen and (max-width: 568px) {
+  .inner{
+    margin:auto;
+    width: 100%;
+  }
+    .container{
+       width: 100%;
+    }
+}
+
+
+
+@media screen and (max-width: 600px) {
+  .inner{
+    margin:auto;
+    width: 100%;
+  }
+    .container{
+       width: 100%;
+    }
+
+}
+
+
+/*--- END RESPONSIVE ---*/

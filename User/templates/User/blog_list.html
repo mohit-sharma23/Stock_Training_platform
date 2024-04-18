@@ -1,0 +1,114 @@
+{% extends 'User/base.html' %}
+{% load static %}
+
+
+{% block css %}
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'User/css/blog_list.css' %}?{% now "U" %}">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/headers/">
+
+    <link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+{% endblock css %}
+
+
+{% block content %}
+<!-- {{request.user.Profile.Consultant}} -->
+<nav class="navbar navPad" style="background-color: transparent">
+        <div class="container-fluid">
+            <a href="/main" style="padding-left: 20px; margin-left: 20px; color: white; text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px blue;" class="navbar-brand logoPad hh66Heading">Stock Street</a>
+            <div style="padding-top: 5px">
+                <a class="navbar-brand" href="{% url 'subscribe' %}" style="text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px blue; font-size:18px; color:white; padding-right:40px; padding-top: 5px; margin-top: 5px">Add a Subscription ?</a>
+                {% if request.user.Profile.consultant %}
+                <!-- <form class="" role="search"  style="text-align: center;">
+                  <div class="nav-item mr-5">
+                    <a class="btn" href="{% url 'create-blog' %}" style="font-size:18px; color:white; padding-right:40px; padding-top: 5px; margin-top: 5px">Make a blog</a>
+                  </div>
+                </form> -->
+                {% endif %}
+<!--                <span>-->
+<!--                    <img style="margin-right: 5px; vertical-align: middle; width: 30px; height: 30px; border-radius: 50%;" src="{% static 'Stock_Game/images/hi5.jpg' %}" alt="Avatar" class="avatar">-->
+<!--                </span>-->
+                <a style="text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px blue; font-size:18px; color:white; padding-right:40px; padding-top: 5px; margin-top: 5px">Welcome, {{request.user}}</a>
+                <a href="/user/logout" style="font-size:18px; color:white; padding-right:40px; text-decoration: none; text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px blue;" onclick="logout()">logout</a>
+            </div>
+            <script>
+                    function logout(){
+                    alert('You have logged out successfully')
+                    }
+                </script>
+        </div>
+        </nav>
+<hr style="color: white; margin: 0px;">
+<div class="outer">
+    <div class="inner">
+        <br>
+            {% for c in b %}
+            <!-- <h1>{{c.blog}}</h1> -->
+                {% if c.blog.all %}
+
+                    {% for post in c.blog.all %}
+                        <div class="card container" id="thumbs" data-related="{{ post.id }}" style="width: 100%;">
+                            <div class="card-body">
+                                <div style="display: flex;">
+                                    <h3 class="card-title">{{ post.title }}</h3>
+                                    <span class="text-muted" style="margin-left: auto; font-style: italic;">By- {{ post.author }}</span>
+                                </div>
+                                <p class="card-text">{{ post.blogs|safe }} </p>
+                                <button class="btn btn-success upv" data-blog="{{ post.id }}">Upvote it!!&nbsp;&nbsp;<span class="upvotes {{ post.id }}">{{ post.upvotes.count }}</span></button>
+                                <!-- <button class="btn btn-success">Upvote</button> -->
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% empty %}
+                <div>
+                    <h1>Sry,no blogs</h1>
+                </div>
+            {% endfor %}
+
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+     <script>
+         $(document).ready(function(){
+             $('.upv').on('click',function(){
+              console.log("ll");
+                 var e=$(this).data('blog');
+                //  console.log(e);
+                 $.ajax({
+                     type: "post",
+                     url: "{% url 'upvote' %}",
+                     data: {
+                         blog:e,
+                         csrfmiddlewaretoken:"{{csrf_token}}",
+                     },
+                     dataType: "json",
+                     success: function (response) {
+                         console.log(response.bool);
+                         if(response.bool==true){
+                            console.log(response);
+                            var e1=$('.'+e+'.upvotes').text();
+                            let r=parseInt(e1);
+                            console.log(e1);
+                            r++;
+                            $('.'+e+'.upvotes').text(r);
+                         }
+                         else{
+                            console.log(response);
+                            var e1=$('.'+e+'.upvotes').text();
+                            let r=parseInt(e1);
+                            console.log(e1);
+                            r--;
+                            $('.'+e+'.upvotes').text(r);
+                         }
+                     }
+                 });
+             })
+         });
+    </script>
+
+{% endblock %}

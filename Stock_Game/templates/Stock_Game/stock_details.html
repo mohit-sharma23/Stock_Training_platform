@@ -1,0 +1,623 @@
+
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.104.2">
+    <link rel="stylesheet" href="{% static 'Stock_Game/css/index.css' %}">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/features/">
+      <link rel="stylesheet" type="text/css" href="{% static 'Stock_Game/css/index.css' %}?{% now 'U' %}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+      body{
+	margin:0;
+	padding:0;
+	font-family:"arial",helvetica,sans-serif;
+	font-size:12px;
+    background: #2980b9 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
+	-webkit-animation: 10s linear 0s normal none infinite animate;
+	-moz-animation: 10s linear 0s normal none infinite animate;
+	-ms-animation: 10s linear 0s normal none infinite animate;
+	-o-animation: 10s linear 0s normal none infinite animate;
+	animation: 10s linear 0s normal none infinite animate;
+
+}
+
+@-webkit-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+
+@-moz-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+
+@-ms-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+
+@-o-keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+
+@keyframes animate {
+	from {background-position:0 0;}
+	to {background-position: 500px 0;}
+}
+    </style>
+
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Stock Details of {{temp}}</title>
+
+    <!-- Custom styles for this tem
+    plate -->
+      <style>
+          #custom-cards{
+          margin-top: 25px;
+          }
+           nav {
+           background: 	#8A2BE2;
+           }
+          .inline{
+          display: inline-block;
+          border-radius: 6px;
+          margin: 2px;
+          }
+          .inline:active{
+          color: white;
+          background: #9370DB
+          }
+          .inline:hover{
+
+          color: white;
+          background: #9370DB
+          }
+          button{
+          background: orange;
+          color: white;
+          }
+          #but:hover{
+            background: #32CD32;
+          }
+          .room{
+          font-weight: bold;
+          font-size: 25px;
+          margin-left : 20px;
+          }
+      </style>
+
+
+    <!-- Custom styles for this template -->
+
+     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <style>
+
+    .card {
+    margin-top:10px;
+    }
+    body {
+        background-color: #FFCC99;
+    }
+    /* The Modal (background) */
+    .modal ,.modal_new {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 100px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content ,.modal_new-content{
+      position: relative;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 0;
+      border: 1px solid #888;
+      width: 80%;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+      from {top:-300px; opacity:0}
+      to {top:0; opacity:1}
+    }
+
+    @keyframes animatetop {
+      from {top:-300px; opacity:0}
+      to {top:0; opacity:1}
+    }
+
+    /* The Close Button */
+    .close, .close_new{
+      color: white;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,.close_new:hover,
+    .close:focus,.close_new:focus{
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .modal-header ,.modal_new-header{
+      padding: 2px 16px;
+      background-color: #5cb85c;
+      color: white;
+    }
+
+    .modal-body, .modal_new-body{padding: 2px 16px;}
+
+    .modal-footer, .modal_new_footer{
+      padding: 2px 16px;
+      background-color: #5cb85c;
+      color: white;
+    }
+
+    </style>
+
+    <!-- Custom styles for this template -->
+
+      <style>
+        #chartdiv {
+          width: 95%;
+          height: 450px;
+          max-width: 100%;
+          background-color: #F5F5F5;
+          margin: 20px;
+          margin-left: 30px;
+        }
+        </style>
+        <style>
+            .avatar {
+                  vertical-align: middle;
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 50%;
+                }
+        </style>
+      <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/headers/">
+
+        <link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  </head>
+<body>
+      <div class="loader" style="display: none;">
+          <div class="rotate"></div>
+          <div>
+              <h3 style="color: blue">Just a Moment .... Predicting</h3>
+          </div>
+          <div>
+              <img src="{% static 'Stock_Game/images/load1.gif' %}">
+          </div>
+      </div>
+
+    <div class="content">
+    <nav class="navbar navbar-light navPad" style="background-color: #377dc34d">
+        <div class="container-fluid">
+            <a href="/main" style="color: white; text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px blue;" class="navbar-brand logoPad hh66Heading" style="width: 148px;height: 40px;">Stock Trainer</a>
+            <div style="padding-top: 5px">
+                <img style="margin-right: 5px" src="{% static 'Stock_Game/images/hi5.jpg' %}" alt="Avatar" class="avatar">
+                <a style="font-size:18px; color:white; padding-right:40px; padding-top: 5px; margin-top: 5px">Welcome, {{request.user}}</a>
+                <a href="/user/logout" style="font-size:18px; color:white; padding-right:40px; text-decoration: none;" onclick="logout()">logout</a>
+            </div>
+            <script>
+                    function logout(){
+                    alert('You have logged out successfully')
+                    }
+                </script>
+
+
+        </div>
+        </nav>
+
+  <main>
+    <div class="container px-0" style="padding-bottom: 20px; " id="custom-cards">
+      <h4 class="pb-3 border-bottom" style="color:white;">Welcome, {{request.user}} to the Room {{room_name}}</h4>
+    </div>
+    <div class="container px-0 py-2" id="custom-cards1">
+      <h4 style="color:white">Room Name : {{room_name}}</h4>
+    </div>
+    <div class="container px-0 py-2" id="custom-cards2">
+        <h4 style="color:white">Stock Name : {{temp}} (<span id="ca">{{stock_name}}</span>)</h4>
+    </div>
+    <div class="container px-0 py-2" id="custom-cards3">
+      <h4 style="color:white" >Current Stock Price : Rs.<span id="pen">{{current_stock_price}}</span></h4>
+        <script>
+       function getNewProduct() {
+       console.log("HELOO");
+       let w=document.getElementById("ca");
+        $.ajax(
+        {
+            type: "GET",
+            url: '/getval/'+w.innerText,
+            cache: false,
+            success: function (context) {
+                displayNewProduct(context);
+            }
+
+        }
+            );
+
+        }
+        function displayNewProduct(context) {
+            if(context.code!=null)
+            {
+                var productCode = document.getElementById('pen');
+                productCode.innerText = Math.round(context.code* 100) / 100;
+
+            }
+        }
+        setInterval(function(){
+            getNewProduct()
+        }, 3000);
+        </script>
+    </div>
+    <div class="container px-0 py-2" id="custom-cards4">
+      <h4 style="color:white">Balance Amount for this Room : Rs.{{room_balance}}</h4>
+    </div>
+     <div style="text-align: center;">
+          <div style = "text-align: center;  display: inline-block;">
+            <div style="width: auto;  margin: 20px;">
+<!--               <a href="/update/{{i.id}}" class="btn btn-primary" style="margin-right:10px;">Rate</a>-->
+                    <!-- Trigger/Open The Modal -->
+
+                    <!-- Trigger/Open The Modal -->
+                    <button id="myBtn" class="btn" style="background-color: white; font-weight: bold; font-size: 18px;
+                    color: black; border: 2px solid white; border-radius: 5px; width: 400px;height: 50px;">Buy Shares of {{temp}}</button>
+
+
+                    <!-- The Modal -->
+                    <form method="POST" action="{{current_stock_price}}/">
+                        {% csrf_token %}
+
+                        <div id="myModal" class="modal">
+
+                      <!-- Modal content -->
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 style="margin-top: 10px">Hi {{request.user}} , How many amount would you like to invest ... </h5>
+                            <span class="close">&times;</span>
+                        </div>
+                        <div class="modal-body" style="text-align: left;">
+                            <h6 style="margin-top: 10px;" id = "rohit">Current Stock Price : <span style="margin-top: 10px;" id = "data"> OK </span></h6>
+                            <script>
+                                document.getElementById('data').innerHTML = document.getElementById("pen").innerHTML;
+                            </script>
+
+                            <h6><label for = "quantity"> Quantity (No.of shares you would like to purchase) : </label>
+
+                            <input type = 'text' id = "quantity" name = "quantity" style="height: 30px; margin-top: 10px" onkeyup="calc()"></h6>
+
+                            <h6 style="display : inline-block; height: 30px; margin-top: 10px; background-color: transparent; border:none; font-size: 16px">Total amount to be getting invested : Rs. </h6>
+
+                            <span><input type = "text" name = "output" id = "output" value = "" style="background-color: transparent; border:none; font-size: 16px"></span>
+
+                             <script>
+                                 function calc(){
+                                 a = document.getElementById('quantity').value
+<!--                                 console.log(a)-->
+                                          if(a<0){
+                                                alert('Please enter valid number of shares to get invested')
+
+                                                $("#quantity").keyup(function () {
+                                                $('#output').val(0);
+                                                });
+                                          }
+                                          else{
+                                              var b = {{current_stock_price}}
+                                              console.log(a)
+                                              if((parseInt(a) * parseInt(b)) > {{room_balance}}){
+                                                    alert('You are exceeding the limit of room_balance')
+                                                    $('#output').val(0)
+                                                    document.querySelector('#quantity').value=''
+                                              }
+                                              else{
+                                                $("#quantity").keyup(function () {
+                                                    $('#output').val($('#quantity').val() * {{current_stock_price}} );
+                                                }
+                                              );
+
+                                              }
+                                          }
+                                          }
+                                 </script>
+                        </div>
+                        <div>
+                            <button id="myBtn1" class="btn btn-primary">Add your amount</button>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                      </div>
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+
+<!--        <div style = "text-align: center; display: inline-block;">-->
+<!--            <div style="width: auto; margin: 20px;">-->
+<!--&lt;!&ndash;               <a href="/update/{{i.id}}" class="btn btn-primary" style="margin-right:10px;">Rate</a>&ndash;&gt;-->
+<!--                    &lt;!&ndash; Trigger/Open The Modal &ndash;&gt;-->
+
+<!--                    &lt;!&ndash; Trigger/Open The Modal &ndash;&gt;-->
+<!--                    <button id="myBtn_new" class="btn_new" style="background-color: yellow; font-weight: bold; font-size: 18px;-->
+<!--                    color: black; border: 2px solid yellow; border-radius: 5px; width: 400px;height: 50px;">Sell Shares of {{temp}}</button>-->
+
+<!--                    &lt;!&ndash; The Modal &ndash;&gt;-->
+<!--                    <form method="POST" action="{{current_stock_price}}/{{no_of_shares}}/">-->
+<!--                        {% csrf_token %}-->
+<!--                        <div id="myModal_new" class="modal_new">-->
+
+<!--                      &lt;!&ndash; Modal content &ndash;&gt;-->
+<!--                      <div class="modal_new-content">-->
+<!--                        <div class="modal_new-header">-->
+<!--                          <h5 style="margin-top: 10px">Withdraw your invested amount</h5>-->
+<!--                            <span class="close_new">&times;</span>-->
+<!--                        </div>-->
+<!--                        <div class="modal_new-body" style="text-align: left;">-->
+<!--                            <h6 style="margin-top: 10px;">Current Stock Price : Rs.{{current_stock_price}}</h6>-->
+
+<!--                            <h6 style="margin-top: 15px;">Quantity(No.of shares you were holding) : {{no_of_shares}}</h6>-->
+
+<!--                            <h6 style="display : inline-block; height: 30px; margin-top: 10px">Total amount to be getting invested : Rs. </h6>-->
+
+<!--                            <a href = "javascript: void(0)" onclick="calc()"></a>-->
+<!--                            <span><input type = "text" name = "output1" id = "output1" value = ""></span>-->
+<!--                        </div>-->
+<!--                        <div>-->
+<!--                            <button id="myBtn_new1" class="btn btn-primary" style =  "margin-bottom: 5px">Withdraw your Amount</button>-->
+<!--                        </div>-->
+<!--                        <div class="modal_new-footer">-->
+<!--                        </div>-->
+<!--                      </div>-->
+
+<!--                    </div>-->
+<!--                    </form>-->
+<!--                    <form method="POST" action="{{current_stock_price}}/{{no_of_shares}}/pred/">-->
+<!--                        {% csrf_token %}-->
+<!--                        <div>-->
+<!--                            <button id="myBtn_new2" class="btn btn-primary" style =  "margin-bottom: 5px">Predict</button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--      </div>-->
+
+<!--        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>-->
+<!--        <div id="chart_div"></div>-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+ <script>
+
+// Get the modal
+var modal_new = document.getElementById("myModal_new");
+
+// Get the button that opens the modal
+var btn_new = document.getElementById("myBtn_new");
+
+// Get the <span> element that closes the modal
+var span_new = document.getElementsByClassName("close_new")[0];
+
+// When the user clicks the button, open the modal
+btn_new.onclick = function() {
+  modal_new.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span_new.onclick = function() {
+  modal_new.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal_new) {
+    modal_new.style.display = "none";
+  }
+}
+
+</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawCurveTypes);
+
+function drawCurveTypes() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'X');
+      data.addColumn('number', 'Dogs');
+      data.addColumn('number', 'Cats');
+
+      data.addRows([
+        [0, 0, 0],    [1, 10, 5],   [2, 23, 15],  [3, 17, 9],   [4, 18, 10],  [5, 9, 5],
+        [6, 11, 3],   [7, 27, 19],  [8, 33, 25],  [9, 40, 32],  [10, 32, 24], [11, 35, 27],
+        [12, 30, 22], [13, 40, 32], [14, 42, 34], [15, 47, 39], [16, 44, 36], [17, 48, 40],
+        [18, 52, 44], [19, 54, 46], [20, 42, 34], [21, 55, 47], [22, 56, 48], [23, 57, 49],
+        [24, 60, 52], [25, 50, 42], [26, 52, 44], [27, 51, 43], [28, 49, 41], [29, 53, 45],
+        [30, 55, 47], [31, 60, 52], [32, 61, 53], [33, 59, 51], [34, 62, 54], [35, 65, 57],
+        [36, 62, 54], [37, 58, 50], [38, 55, 47], [39, 61, 53], [40, 64, 56], [41, 65, 57],
+        [42, 63, 55], [43, 66, 58], [44, 67, 59], [45, 69, 61], [46, 69, 61], [47, 70, 62],
+        [48, 72, 64], [49, 68, 60], [50, 66, 58], [51, 65, 57], [52, 67, 59], [53, 70, 62],
+        [54, 71, 63], [55, 72, 64], [56, 73, 65], [57, 75, 67], [58, 70, 62], [59, 68, 60],
+        [60, 64, 56], [61, 60, 52], [62, 65, 57], [63, 67, 59], [64, 68, 60], [65, 69, 61],
+        [66, 70, 62], [67, 72, 64], [68, 75, 67], [69, 80, 72]
+      ]);
+
+      var options = {
+        hAxis: {
+          title: 'Time'
+        },
+        vAxis: {
+          title: 'Popularity'
+        },
+        series: {
+          1: {curveType: 'function'}
+        }
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+
+</script>
+
+      <script>
+          $("#quantity").keyup(function () {
+            $('#output').val($('#quantity').val() * {{current_stock_price}} );
+          });
+      </script>
+
+      <script>
+            $('#output1').val({{no_of_shares}} * {{current_stock_price}});
+      </script>
+  </div>
+      <div class="container px-0 py-2" id="custom-cards5">
+      <h4 class="pb-3 border-bottom" style="color:white">Graphical representation of {{temp}} shares ..</h4>
+    </div>
+      <div class="container px-0 py-2" id="custom-cards6">
+      <h4 class="pb-3" style="color:white">User can make use of our trained algorithm for predicting share prices by clicking here ...</h4>
+    </div>
+<!--      <span style="text-align: center">-->
+<!--          <form method="POST" action="{{current_stock_price}}/{{no_of_shares}}/pred/">-->
+<!--          {% csrf_token %}-->
+<!--          <div>-->
+<!--              <button id="myBtn_new2" class="btn btn-primary" style =  "margin-bottom: 5px; height: 50px; width: 380px; background: white; color: black; font-size: 18px; font-weight: bold;">Predict</button>-->
+<!--          </div>-->
+<!--         </form>-->
+<!--      </span>-->
+      <div style = "text-align: center">
+              <button id="myBtn_new2"  onclick="
+              showLoaderOnClick( `{% url 'predict' room_name stock_name current_stock_price no_of_shares %}`)" class="btn btn-primary" style =  "background-color: white; font-weight: bold; font-size: 18px;
+                    color: black; border: 2px solid white; border-radius: 5px; width: 400px;height: 50px;" >Predict</button>
+<!-- onclick="
+showLoaderOnClick( `{% url 'predict' room_name stock_name current_stock_price no_of_shares %}`)" -->
+      </div>
+</main>
+    </div>
+</body>
+<script>
+  function showLoaderOnClick(url) {
+    console.log(url);
+      showLoader();
+      window.location=url;
+  }
+  function showLoader(){
+      console.log("done")
+      $('.body').css('display','none');
+      $('.content').css('display','none')
+      $('.loader').css('display','block');
+      $(window).on('load', function(){
+        setTimeout(removeLoader, 2000); //wait for page load PLUS two seconds.
+      });
+      function removeLoader(){
+          $( "#loadingDiv" ).fadeOut(500, function() {
+            // fadeOut complete. Remove the loading div
+            $( "#loadingDiv" ).remove(); //makes page more lightweight
+        });
+      }
+  }
+</script>

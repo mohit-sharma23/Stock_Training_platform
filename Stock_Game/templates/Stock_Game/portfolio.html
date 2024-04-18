@@ -1,0 +1,460 @@
+<!-- {% load static %} -->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.104.2">
+  <title>{{name}}</title>
+  <link rel="stylesheet" href="{% static 'Stock_Game/css/index.css' %}">
+  <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/features/"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+
+    .b-example-divider {
+      height: 3rem;
+      background-color: rgba(0, 0, 0, .1);
+      border: solid rgba(0, 0, 0, .15);
+      border-width: 1px 0;
+      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+    }
+
+    .b-example-vr {
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 100vh;
+    }
+
+    .bi {
+      vertical-align: -.125em;
+      fill: currentColor;
+    }
+
+    .nav-scroller {
+      position: relative;
+      z-index: 2;
+      height: 2.75rem;
+      overflow-y: hidden;
+    }
+
+    .nav-scroller .nav {
+      display: flex;
+      flex-wrap: nowrap;
+      padding-bottom: 1rem;
+      margin-top: -1px;
+      overflow-x: auto;
+      text-align: center;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    body {
+      background: #2980b9 url('https://static.tumblr.com/03fbbc566b081016810402488936fbae/pqpk3dn/MRSmlzpj3/tumblr_static_bg3.png') repeat 0 0;
+      -webkit-animation: 10s linear 0s normal none infinite animate;
+      -moz-animation: 10s linear 0s normal none infinite animate;
+      -ms-animation: 10s linear 0s normal none infinite animate;
+      -o-animation: 10s linear 0s normal none infinite animate;
+      animation: 10s linear 0s normal none infinite animate;
+
+    }
+
+    @-webkit-keyframes animate {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 500px 0;
+      }
+    }
+
+    @-moz-keyframes animate {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 500px 0;
+      }
+    }
+
+    @-ms-keyframes animate {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 500px 0;
+      }
+    }
+
+    @-o-keyframes animate {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 500px 0;
+      }
+    }
+
+    @keyframes animate {
+      from {
+        background-position: 0 0;
+      }
+
+      to {
+        background-position: 500px 0;
+      }
+    }
+  </style>
+
+  <!-- Custom styles for this template -->
+  <!-- <link href="features.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="{% static 'Stock_Game/css/portfolio.css' %}?{% now "U" %}">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+  <style>
+    .card {
+      margin-top: 10px;
+    }
+
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      padding-top: 100px;
+      /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+      position: relative;
+      background-color: #fefefe;
+      margin: auto;
+      padding: 0;
+      border: 1px solid #888;
+      width: 80%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      -webkit-animation-name: animatetop;
+      -webkit-animation-duration: 0.4s;
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+
+    /* Add Animation */
+    @-webkit-keyframes animatetop {
+      from {
+        top: -300px;
+        opacity: 0
+      }
+
+      to {
+        top: 0;
+        opacity: 1
+      }
+    }
+
+    @keyframes animatetop {
+      from {
+        top: -300px;
+        opacity: 0
+      }
+
+      to {
+        top: 0;
+        opacity: 1
+      }
+    }
+
+    /* The Close Button */
+    .close {
+      color: white;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: hand;
+    }
+
+    .close:hover .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: hand;
+    }
+
+    .modal-header {
+      padding: 2px 16px;
+      background-color: #5cb85c;
+      color: white;
+    }
+
+    .modal-body {
+      padding: 2px 16px;
+    }
+
+    .modal-footer {
+      padding: 2px 16px;
+      background-color: #5cb85c;
+      color: white;
+    }
+  </style>
+
+  <!-- Custom styles for this template -->
+  <link href="features.css" rel="stylesheet">
+
+  <style>
+    textarea:focus,
+    input:focus {
+      outline: none;
+    }
+  </style>
+
+  <style>
+    .avatar {
+      vertical-align: middle;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+  </style>
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/headers/">
+  <link href="/docs/5.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar navbar-light navPad" style="background-color: #377dc34d">
+    <div class="container-fluid">
+      <a href="/main" style="color: white; text-shadow: 1px 1px 2px black, 0 0 25px red, 0 0 5px blue;"
+        class="navbar-brand logoPad hh66Heading" style="width: 148px;height: 40px;">Stock Trainer</a>
+      <div style="padding-top: 5px">
+        <img style="margin-right: 5px" src="{% static 'Stock_Game/images/hi5.jpg' %}" alt="Avatar" class="avatar">
+        <a style="font-size:18px; color:white; padding-right:40px; padding-top: 5px; margin-top: 5px">Welcome,
+          Pushkar</a>
+        <a href="/user/logout" style="font-size:18px; color:white; padding-right:40px; text-decoration: none;"
+          onclick="logout()">logout</a>
+      </div>
+      <script>
+        function logout() {
+          alert('You have logged out successfully')
+        }
+      </script>
+    </div>
+  </nav>
+  <div class="outer">
+    <div class="room-info">
+      <div class="Team-Name">
+        <h1 class="info" style="margin-bottom: 10px;">{{name}}</h1>
+      </div>
+      <div class="info-row">
+        <div class="reminvest">
+          <h5 class="info">AVAILABLE FUNDS</h5>
+          <h2 class="info"><span class="rupee">₹</span>{{money_left}}</h2>
+          <!-- <h6 class="info">TO INVEST</h6> -->
+        </div>
+        <div class="profit">
+          <h5 class="info">PROFIT/LOSS</h5>
+          <h2 class="info"><span class="rupee">₹</span>{{Profit}}</h2>
+        </div>
+        <div class="initial">
+          <h5 class="info">INITIAL FUNDS</h5>
+          <h2 class="info"><span class="rupee">₹</span>{{Initial}}</h2>
+        </div>
+      </div>
+    </div>
+    <div class="options-row">
+      <div class="port-label">
+        <h2 style="text-align: center;margin-top: 5px;">Portfolio</h2>
+      </div>
+      <button class="add-stock">
+        <a href="/stocks/{{id}}/">Add Stocks</a>
+      </button>
+      <button class="leaderboard">
+        <a href="/ranklist/{{id}}/">Leaderboard</a>
+      </button>
+    </div>
+    <div class="portfolio">
+      {% for i in k %}
+      <div class="stock">
+        <div style="width:35em">
+          <h4>{{i.stock_name}}</h4>
+          <div class="profit-current">
+            <h6 id="profit{{i.var}}"style="margin-bottom: 0px;">Profit/Loss: <span class="rupee">₹</span>{{i.profit}}</h6>
+            <h6 id="curr_money{{i.var}}" style="margin-left: 2em;margin-bottom: 0px">Current Price: <span class="rupee">₹</span>{{i.Current_price}}</h6>
+            <input id="curr_money_1_{{i.var}}" style="display: none;"type="number" value="{{i.Current_price}}">
+          </div>
+          <div class="invested-quantity">
+            <h6 id="money_inv{{i.var}}">Invested Price: <span class="rupee">₹</span>{{i.old_price}}</h6>
+            <input id="money_inv_1_{{i.var}}" style="display: none;"type="number" value="{{i.old_price}}">
+
+            <h6 style="margin-left: 2em;">Quantity: {{i.no_of_shares}}</h6>
+          </div>
+        </div>
+        <script>
+          if(document.getElementById('money_inv_1_{{i.var}}').value > document.getElementById('curr_money_1_{{i.var}}').value){
+            document.getElementById('profit{{i.var}}').style.color = "red";
+          }
+          else {
+                document.getElementById("profit{{i.var}}").style.color = 'green';
+          }
+        </script>
+        <button id="myBtn{{i.var}}" class="sell">Sell Shares</button>
+
+        
+        <form method="POST" action="/port_push/{{id}}/{{i.stock_nse}}/{{i.old_price}}/{{i.Current_price}}/{{i.no_of_shares}}/{{i.var}}/">
+          {% csrf_token %}
+          <div id="myModal{{i.var}}" class="modal" style=" text-align: center">
+          
+            <!-- Modal content -->
+            <div class="modal-content" style="text-align: center;">
+              <div class="modal-header" style="text-align: center;">
+                <h5 style="margin-top: 10px; text-align: center;">Withdraw your invested amount</h5>
+                  <span class="close_new" id="close{{i.var}}" style="font-size: 35px">&times;</span>
+              </div>
+              <div class="modal-body" style="text-align: left;">
+                  <h6 style="margin-top: 10px;">Invested Stock Price : Rs.{{i.old_price}}</h6>
+              
+                  <h6 style="margin-top: 15px;">Current Stock Price : Rs.{{i.Current_price}}</h6>
+              
+                  <h6 style="margin-top: 15px;">Quantity (No.of shares you were holding) : {{i.no_of_shares}}</h6>
+              
+                  <h6><label for = "quantity{{i.var}}"> Quantity (No.of shares you would like to withdraw) : </label>
+                  
+                  <input type = 'text' id = "quantity{{i.var}}" name = "quantity{{i.var}}" style="height: 30px; margin-top: 4px" value = "{{i.no_of_shares}}" onkeyup="calc{{i.var}}()"></h6>
+                  
+                  <h6 style="display : inline-block; height: 30px; margin-top: 4px">Total amount to be getting invested : Rs. </h6>
+                  
+                  <span><input type = "text" name = "output{{i.var}}" id = "output{{i.var}}" value = "{{i.sums}}"  style="background-color: transparent; border:none; font-size: 16px"></span>
+                  <script>
+
+                    function calc{{i.var}}(){
+
+                    var a = document.getElementById('quantity{{i.var}}').value
+                    console.log(a.value)
+                    b = parseInt({{i.no_of_shares}})
+                    console.log(a,b)
+                    if(a>b){
+                          alert('You are exceeding the withdrawal of shares')
+                    }
+                    else if(a<0){
+                          alert('Please enter valid number of shares to get withdraw')
+
+                          $("#quantity{{i.var}}").keyup(function () {
+                          $('#output{{i.var}}').val(0);
+                           });
+                    }
+                    else{
+                        console.log(document.getElementById('quantity{{i.var}}'));
+
+                        $("#quantity{{i.var}}").keyup(function () {
+                          $('#output{{i.var}}').val($('#quantity{{i.var}}').val() * {{i.Current_price}} );
+                        });
+                    }
+                    }
+              </script>
+              </div>
+              <div>
+                <button id="myBtn{{i.var}}_new" class="btn btn-primary" style =  "margin-bottom: 5px">Withdraw your Amount</button>
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
+        </form>
+        <script>
+          console.log("Hello")
+        // Get the modal
+        var modal{{i.var}} = document.getElementById("myModal{{i.var}}");
+
+        // Get the button that opens the modal
+        var btn{{i.var}} = document.getElementById("myBtn{{i.var}}");
+
+
+        // Get the <span> element that closes the modal
+        var span{{i.var}} = document.getElementById("close{{i.var}}");
+
+        // When the user clicks the button, open the modal
+        btn{{i.var}}.onclick = function() {
+          modal{{i.var}}.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span{{i.var}}.onclick = function() {
+          modal{{i.var}}.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside-of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal{{i.var}}) {
+            modal{{i.var}}.style.display = "none";
+          }
+        }
+
+    </script>
+
+      </div>
+      {% endfor %}
+        
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+
+
+
+</body>
+
+
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script>
+    
+</script>

@@ -1,0 +1,79 @@
+{% extends 'User/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'User/css/login.css' %}?{% now "U" %}">
+{% endblock css %}
+{% block content %}
+
+
+<div id="bg">
+        <nav class="navbar navbar-expand-lg bg-light container-fluid">
+                <div class="row container-fluid">
+                    <div class="nav-item col-3" style="text-align: center;">
+                      <b><a class="nav-link active" aria-current="page" href="{% url 'main' %}" style="color: black ; font-size:x-large">Stock Street</a></b>
+                    </div>
+                    
+                    
+                  <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'main' %}">Home</a>
+                      </li>
+                     
+                    </ul>
+                    <div class="brand">
+                        <a class="navbar-brand" href="">Stocker</a>
+                    </div>
+            
+                    <form class="d-flex" role="search">
+                      <div class="nav-item mr-5">
+                        <a class="btn" href="{% url 'create-blog' %}" style="background-color:orange ;">Make a blog</a>
+                      </div>
+                    </form>
+                  </div> -->
+                </div>
+              </nav>
+</div>
+<div class="covering">
+<form method="post">
+  {% csrf_token %}
+        <div class="form-field">
+                <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" class="textinput textInput form-control" required id="id_username" placeholder="Email / Username"  required/>
+        </div>
+        
+        <div class="form-field">
+        <input type="password" name="password" autocomplete="current-password" class="textinput textInput form-control" required id="id_password" placeholder="Password"  required/>                         </div>
+        
+        <div class="form-field">
+        <button class="btn" type="submit" style="background-color: black;">Log in</button>
+        </div>
+        <div class="form-field justify-content-center">
+                <a href="{% url 'register' %}" style="color: black; font-weight: bold;">Not a User? Register</a>
+        </div>
+
+
+</form>
+</div>  
+        <!-- <form method="POST">
+                {% csrf_token %}
+                <div id="div_id_username" class="form-group">
+                        
+                </div> 
+                <br>
+                <div id="div_id_password" class="form-group"> 
+                        <label for="id_password" class="requiredField down">
+                                Password<span class="asteriskField">*</span> 
+                        </label> 
+                        <div class=""> 
+                                <input > 
+                        </div> 
+                </div>
+                <br>
+        </form>  -->
+
+{% endblock %}
